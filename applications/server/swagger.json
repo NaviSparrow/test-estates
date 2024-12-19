@@ -1,0 +1,62 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Estates API",
+    "version": "1.0.0",
+    "description": "API for estates"
+  },
+  "servers": [{ "url": "http://localhost:3000" }],
+  "paths": {
+    "/estates": {
+      "get": {
+        "summary": "Retrieve a list of estates",
+        "description": "Returns a list of estates with optional query parameters for filtering.",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "city",
+            "schema": { "type": "string" },
+            "description": "Filter estates by city"
+          },
+          {
+            "in": "query",
+            "name": "type",
+            "schema": { "type": "string" },
+            "description": "Filter estates by type (e.g., apartment, house)"
+          },
+          {
+            "in": "query",
+            "name": "search",
+            "schema": { "type": "string" },
+            "description": "Search estates by a keyword (e.g., part of the address or city name)"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of estates",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": { "type": "integer" },
+                      "address": { "type": "string" },
+                      "city": { "type": "string" },
+                      "type": { "type": "string" },
+                      "price": { "type": "number" },
+                      "currency": { "type": "string" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {},
+  "tags": []
+}

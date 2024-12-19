@@ -5,16 +5,20 @@
   "main": "index.js",
   "scripts": {
     "build": "tsup",
-    "start": "node dist/index.js"
+    "start": "node dist/index.js",
+    "generate:client-api": "npx @openapitools/openapi-generator-cli generate -i swagger.json -g typescript-axios -o ../client/src/api"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@faker-js/faker": "^8.4.1",
-    "express": "^4.21.1"
+    "express": "^4.21.1",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
+    "@openapitools/openapi-generator-cli": "^2.15.3",
     "@types/express": "^5.0.0",
     "@types/node": "^22.9.0",
     "tsup": "^8.0.2"
