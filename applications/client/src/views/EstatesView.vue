@@ -93,7 +93,7 @@ onMounted(async () => {
         <template #address="{ data }">
           <span
             v-if="searchFilter"
-            v-html="checkAddress(data.address)"
+            v-html="checkAddress(data.address as string)"
           ></span>
           <span v-else>{{ data.address }}</span>
         </template>
@@ -104,17 +104,17 @@ onMounted(async () => {
               v-if="!cityFilter"
               type="button"
               :class="$style['button-city-filter']"
-              @click="() => cityFilterHanlder(data.city)"
+              @click="() => cityFilterHanlder(data.city as string)"
             >
               найти
             </button>
           </div>
         </template>
         <template #type="{ data }">
-          {{ EstateType[data.type] }}
+          {{ EstateType[data.type as keyof typeof EstateType] }}
         </template>
         <template #price="{ data }">
-          {{ useFormatPrice(data.price, data.currency, 'ru') }}
+          {{ useFormatPrice(data.price as number, data.currency as string, 'ru') }}
         </template>
       </TableBase>
       <div v-if="estatesData.length === 0">Ничего не найдено...</div>

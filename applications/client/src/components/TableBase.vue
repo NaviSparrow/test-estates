@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { toRefs } from 'vue';
+import { toRefs, type StyleValue } from 'vue';
 
 export interface Column {
   id: number;
@@ -39,13 +39,13 @@ const { tableHead, tableBody } = toRefs(props);
     <tbody>
       <tr
         v-for="estateItem in tableBody"
-        :key="estateItem.id"
+        :key="estateItem.id as number"
       >
         <td
           v-for="(column, index) in tableHead"
           :key="column.id"
           :class="$style['table-body-cell']"
-          :style="{ textAlign: column.textAlign }"
+          :style="{ textAlign: column.textAlign } as StyleValue"
         >
           <slot
             :data="estateItem"
