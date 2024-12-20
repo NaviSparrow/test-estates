@@ -11,6 +11,7 @@
       "get": {
         "summary": "Retrieve a list of estates",
         "description": "Returns a list of estates with optional query parameters for filtering.",
+        "operationId": "getEstates",
         "parameters": [
           {
             "in": "query",
@@ -38,17 +39,7 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "id": { "type": "integer" },
-                      "address": { "type": "string" },
-                      "city": { "type": "string" },
-                      "type": { "type": "string" },
-                      "price": { "type": "number" },
-                      "currency": { "type": "string" }
-                    }
-                  }
+                  "items": { "$ref": "#/components/schemas/Estate" }
                 }
               }
             }
@@ -57,6 +48,20 @@
       }
     }
   },
-  "components": {},
+  "components": {
+    "schemas": {
+      "Estate": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer" },
+          "address": { "type": "string" },
+          "city": { "type": "string" },
+          "type": { "type": "string" },
+          "price": { "type": "number" },
+          "currency": { "type": "string" }
+        }
+      }
+    }
+  },
   "tags": []
 }

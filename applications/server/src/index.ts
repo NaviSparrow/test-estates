@@ -21,6 +21,7 @@ app.use((req, res, next) => {
  *   get:
  *     summary: Retrieve a list of estates
  *     description: Returns a list of estates with optional query parameters for filtering.
+ *     operationId: getEstates
  *     parameters:
  *       - in: query
  *         name: city
@@ -45,21 +46,26 @@ app.use((req, res, next) => {
  *             schema:
  *               type: array
  *               items:
- *                 type: object
- *                 properties:
- *                   id:
- *                     type: integer
- *                   address:
- *                     type: string
- *                   city:
- *                     type: string
- *                   type:
- *                     type: string
- *                   price:
- *                     type: number
- *                   currency:
- *                     type: string
+ *                 $ref: '#/components/schemas/Estate'
+ * components:
+ *   schemas:
+ *     Estate:
+ *       type: object
+ *       properties:
+ *         id:
+ *           type: integer
+ *         address:
+ *           type: string
+ *         city:
+ *           type: string
+ *         type:
+ *           type: string
+ *         price:
+ *           type: number
+ *         currency:
+ *           type: string
  */
+
 app.get('/estates', (req, res) => {
   const params = req.query;
   const result = estates.getEstates(params);
