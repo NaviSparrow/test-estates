@@ -26,43 +26,43 @@ import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError, operationServerM
 /**
  * 
  * @export
- * @interface EstatesGet200ResponseInner
+ * @interface Estate
  */
-export interface EstatesGet200ResponseInner {
+export interface Estate {
     /**
      * 
      * @type {number}
-     * @memberof EstatesGet200ResponseInner
+     * @memberof Estate
      */
     'id'?: number;
     /**
      * 
      * @type {string}
-     * @memberof EstatesGet200ResponseInner
+     * @memberof Estate
      */
     'address'?: string;
     /**
      * 
      * @type {string}
-     * @memberof EstatesGet200ResponseInner
+     * @memberof Estate
      */
     'city'?: string;
     /**
      * 
      * @type {string}
-     * @memberof EstatesGet200ResponseInner
+     * @memberof Estate
      */
     'type'?: string;
     /**
      * 
      * @type {number}
-     * @memberof EstatesGet200ResponseInner
+     * @memberof Estate
      */
     'price'?: number;
     /**
      * 
      * @type {string}
-     * @memberof EstatesGet200ResponseInner
+     * @memberof Estate
      */
     'currency'?: string;
 }
@@ -82,7 +82,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        estatesGet: async (city?: string, type?: string, search?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getEstates: async (city?: string, type?: string, search?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/estates`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -137,10 +137,10 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async estatesGet(city?: string, type?: string, search?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<EstatesGet200ResponseInner>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.estatesGet(city, type, search, options);
+        async getEstates(city?: string, type?: string, search?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Estate>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getEstates(city, type, search, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.estatesGet']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['DefaultApi.getEstates']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
@@ -162,8 +162,8 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        estatesGet(city?: string, type?: string, search?: string, options?: RawAxiosRequestConfig): AxiosPromise<Array<EstatesGet200ResponseInner>> {
-            return localVarFp.estatesGet(city, type, search, options).then((request) => request(axios, basePath));
+        getEstates(city?: string, type?: string, search?: string, options?: RawAxiosRequestConfig): AxiosPromise<Array<Estate>> {
+            return localVarFp.getEstates(city, type, search, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -185,8 +185,8 @@ export class DefaultApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public estatesGet(city?: string, type?: string, search?: string, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).estatesGet(city, type, search, options).then((request) => request(this.axios, this.basePath));
+    public getEstates(city?: string, type?: string, search?: string, options?: RawAxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).getEstates(city, type, search, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
